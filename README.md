@@ -1,62 +1,60 @@
-# Project Title
+# NeetCode 150
 
 Simple overview of use/purpose.
 
-## Description
+## Backtracking
 
-An in-depth paragraph about your project and overview of use.
+### Generate Parentheses
 
-## Getting Started
+**Problem:** given `n` generate all unique, well-formed strings of parentheses.
 
-### Dependencies
+```python
+def generateParentheses(n: int) -> str:
+    res = []
+    stack = []
 
-* Describe any prerequisites, libraries, OS version, etc., needed before installing program.
-* ex. Windows 10
+    def backtrack(opened, closed):
+        # Parentheses are well formed and of size n
+        if opened == closed == n:
+            res.append("".join(stack))
+            return
 
-### Installing
+        # New parentheses can still be opened
+        if opened < n:
+            stack.append("(")
+            backtrack(opened + 1, closed)
+            stack.pop()
 
-* How/where to download your program
-* Any modifications needed to be made to files/folders
+        # There are parentheses to close
+        if closed < opened:
+            stack.append(")")
+            backtrack(opened, closed + 1)
+            stack.pop()
 
-### Executing program
-
-* How to run the program
-* Step-by-step bullets
+    backtrack(0, 0)
+    return res
 ```
-code blocks for commands
-```
 
-## Help
+#### Call Graph
 
-Any advise for common problems or issues.
-```
-command to run if program contains helper info
-```
+The algorithm performs DFS. At call, there is possibility to add both '(' and ')', depending on the value of `opened` and `closed`. The algorithm uses stack as the common mutable state, which is prerequisite for backtracking.
 
-## Authors
+backtrack(0, 0)
+│
+├── add '(' → backtrack(1, 0)
+│   │
+│   ├── add '(' → backtrack(2, 0)
+│   │   │
+│   │   └── add ')' → backtrack(2, 1)
+│   │       │
+│   │       └── add ')' → backtrack(2, 2) ✅ "()()"
+│   │
+│   └── add ')' → backtrack(1, 1)
+│       │
+│       └── add '(' → backtrack(2, 1)
+│           │
+│           └── add ')' → backtrack(2, 2) ✅ "(())"
+│
+└── (no add ')' because closed == opened == 0)
 
-Contributors names and contact info
-
-ex. Dominique Pizzie  
-ex. [@DomPizzie](https://twitter.com/dompizzie)
-
-## Version History
-
-* 0.2
-    * Various bug fixes and optimizations
-    * See [commit change]() or See [release history]()
-* 0.1
-    * Initial Release
-
-## License
-
-This project is licensed under the [NAME HERE] License - see the LICENSE.md file for details
-
-## Acknowledgments
-
-Inspiration, code snippets, etc.
-* [awesome-readme](https://github.com/matiassingers/awesome-readme)
-* [PurpleBooth](https://gist.github.com/PurpleBooth/109311bb0361f32d87a2)
-* [dbader](https://github.com/dbader/readme-template)
-* [zenorocha](https://gist.github.com/zenorocha/4526327)
-* [fvcproductions](https://gist.github.com/fvcproductions/1bfc2d4aecb01a834b46)
+### Lorem Ipsum
