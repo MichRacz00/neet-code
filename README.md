@@ -39,6 +39,7 @@ def generateParentheses(n: int) -> str:
 
 The algorithm performs DFS. At call, there is possibility to add both '(' and ')', depending on the value of `opened` and `closed`. The algorithm uses stack as the common mutable state, which is prerequisite for backtracking.
 
+```text
 backtrack(0, 0)
 │
 ├── add '(' → backtrack(1, 0)
@@ -56,5 +57,6 @@ backtrack(0, 0)
 │           └── add ')' → backtrack(2, 2) ✅ "(())"
 │
 └── (no add ')' because closed == opened == 0)
+```
 
 ### Lorem Ipsum
