@@ -2,6 +2,29 @@
 
 Simple overview of use/purpose.
 
+## Two Pointers
+
+### Two Integer Sum II
+
+**Problem:** given a sorted integer array `numbers` return a 1-indexed array `[index1, index2]` such that the values of the two indices sum up to `target`.
+
+```python
+def twoSum(numbers: List[int], target: int) -> List[int]:
+    l, r = 0, len(numbers) - 1
+
+    while l < r:
+        curSum = numbers[l] + numbers[r]
+
+        if curSum == target:
+            return [l + 1, r + 1]
+
+        if curSum > target:
+            r -= 1
+
+        if curSum < target:
+            l -= 1
+```
+
 ## Backtracking
 
 ### Subsets
