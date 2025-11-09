@@ -47,6 +47,31 @@ subsets([1, 2]) → backtrack(0)
     └── exclude 2 → [] → backtrack(2) ✅ add []
 ```
 
+### Combination Sum
+Given an array of distinct integers `nums` and a target integer `target`, your task is to return a list of all unique combinations of `nums` where the chosen numbers sum to `target`.
+
+```python
+def combinationSum(nums: List[int], target: int) -> List[List[int]]:
+    res = []
+
+    def backtrack(i, cur, total):
+        if total == target:
+            res.append(cur.copy())
+            return
+
+        if i >= len(nums) or total > target:
+            return
+
+        cur.append(nums[i])
+        backtrack(i, cur, total + nums[i])
+
+        cur.pop()
+        backtrack(i + 1, cur, total)
+
+    backtrack(0, [], 0)
+    return res
+```
+
 ### Generate Parentheses
 
 **Problem:** given `n` generate all unique, well-formed strings of parentheses.
