@@ -25,6 +25,43 @@ def twoSum(numbers: List[int], target: int) -> List[int]:
             l -= 1
 ```
 
+### 3Sum
+
+**Problem:** given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` where `nums[i] + nums[j] + nums[k] == 0`, and the indices `i`, `j` and `k` are all distinct.
+
+```python
+def threeSum(nums: List[int]) -> List[List[int]]:
+    res = []
+    nums.sort() # fits within n^2
+
+    for i, n in enumerate(nums):
+        total = n
+        l, r = i + 1, len(nums) - 1
+
+        while l < r:
+            curSum = total + nums[l] + nums[r]
+
+            # Skip duplicate numbers for index i
+            if i > 0 and n == nums[i - 1]:
+                continue
+
+            if curSum > 0:
+                r -= 1
+            elif curSum < 0:
+                l += 1
+            else:
+                res.append([n, nums[l], nums[r]])
+                l, r = l + 1, r - 1
+
+                # Skip duplicate numbers under pointers.
+                # Only need to move one pointer, as the 
+                # sum will evaluate accrodingly.
+                while l < r and nums[l] == nums[l - 1]:
+                    l += 1
+
+    return res
+```
+
 ## Backtracking
 
 ### Subsets
