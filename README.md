@@ -4,6 +4,36 @@ Simple overview of use/purpose.
 
 ## Two Pointers
 
+### Valid Palindrome
+
+**Problem:** given a string `s`, return `true` if it is a palindrome, otherwise return `false`.
+
+```python
+class Solution:
+    def isPalindrome(self, s: str) -> bool:
+        l, r = 0, len(s) - 1
+
+        while l < r:
+            if not self.isAlphanum(s[l]):
+                l += 1
+                continue
+            if not self.isAlphanum(s[r]):
+                r -= 1
+                continue
+            
+            if s[l].lower() != s[r].lower():
+                return False
+            
+            l, r = l + 1, r - 1
+        
+        return True
+
+    def isAlphanum(self, c):
+        return (ord('A') <= ord(c) <= ord('Z') or
+            ord('a') <= ord(c) <= ord('z') or
+            ord('0') <= ord(c) <= ord('9'))
+```
+
 ### Two Integer Sum II
 
 **Problem:** given a sorted integer array `numbers` return a 1-indexed array `[index1, index2]` such that the values of the two indices sum up to `target`.
