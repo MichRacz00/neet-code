@@ -51,7 +51,7 @@ def threeSum(nums: List[int]) -> List[List[int]]:
                 l += 1
             else:
                 res.append([n, nums[l], nums[r]])
-                l, r = l + 1, r - 1
+                l += 1
 
                 # Skip duplicate numbers under pointers.
                 # Only need to move one pointer, as the 
@@ -60,6 +60,27 @@ def threeSum(nums: List[int]) -> List[List[int]]:
                     l += 1
 
     return res
+```
+
+### Container With Most Water
+
+**Problem:** you are given an integer array `heights` where `heights[i]` represents the height of the ith bar. You may choose any two bars to form a container. Return the maximum amount of water a container can store.
+
+```python
+def maxArea(heights: List[int]) -> int:
+    l, r = 0, len(heights) - 1
+    volume = 0
+
+    for i in range(len(heights)):
+        curVol = min(heights[l], heights[r]) * (r - l)
+        volume = max(volume, curVol)
+
+        if heights[l] > heights[r]:
+            r -= 1
+        else:
+            l += 1
+
+    return volume
 ```
 
 ## Backtracking
