@@ -4,7 +4,44 @@ Simple overview of use/purpose.
 
 ## Two Pointers
 
-### Valid Palindrome
+### 🧭 Recognizing Two-Pointer Problems
+
+Two-pointer problems are common in LeetCode and other coding interviews. They involve using two indices (or “pointers”) that move through a sequence (like an array or string) to efficiently find a result without nested loops.
+
+#### 🔍 When to Suspect a Two-Pointer Problem
+
+You can usually recognize two-pointer problems when **one or more** of these clues appear:
+
+| Pattern | Typical Input | Typical Goal | Common Clues |
+|----------|----------------|---------------|---------------|
+| **Opposite Ends (Converging Pointers)** | Sorted arrays, strings | Compare or find pairs from both ends | “sorted array”, “pair sums to target”, “palindrome”, “container” |
+| **Sliding Window (Expanding / Contracting)** | Arrays, strings | Find/maximize/minimize a subarray or substring | “subarray”, “substring”, “at most k”, “longest/shortest” |
+| **Same Direction (Moving Window)** | Strings, arrays | Maintain valid range or count | “longest substring without repeating characters”, “subarray sum” |
+| **Partitioning / Merging** | Sorted arrays or linked lists | Split or merge data efficiently | “merge”, “partition”, “combine sorted arrays” |
+| **Meet in the Middle** | Arrays, sorted inputs | Two sides moving toward a target condition | “sum closest to target”, “difference equals k”, “3Sum”, “4Sum” |
+
+#### 🧠 How to Identify Them in the Wild
+
+Look for problems that mention or imply:
+
+- **Sorted input**  
+  Sorting makes pointer movement predictable.  
+  _Example: `Two Sum II`, `3Sum`, `Container With Most Water`._
+
+- **Comparing elements at different positions**  
+  Usually means moving inward from both ends or maintaining two markers.  
+  _Example: `Valid Palindrome`._
+
+- **Finding pairs, triplets, or windows**  
+  Often requires adjusting two (or more) pointers dynamically.  
+  _Example: `3Sum`, `Subarray Product < K`._
+
+- **Returning indices or subarrays**  
+  Commonly solved by pointer-based traversal rather than brute force.
+
+### Example Problems
+
+#### Valid Palindrome
 
 **Problem:** given a string `s`, return `true` if it is a palindrome, otherwise return `false`.
 
@@ -34,7 +71,7 @@ class Solution:
             ord('0') <= ord(c) <= ord('9'))
 ```
 
-### Two Integer Sum II
+#### Two Integer Sum II
 
 **Problem:** given a sorted integer array `numbers` return a 1-indexed array `[index1, index2]` such that the values of the two indices sum up to `target`.
 
@@ -55,7 +92,7 @@ def twoSum(numbers: List[int], target: int) -> List[int]:
             l -= 1
 ```
 
-### 3Sum
+#### 3Sum
 
 **Problem:** given an integer array `nums`, return all the triplets `[nums[i], nums[j], nums[k]]` where `nums[i] + nums[j] + nums[k] == 0`, and the indices `i`, `j` and `k` are all distinct.
 
@@ -92,7 +129,7 @@ def threeSum(nums: List[int]) -> List[List[int]]:
     return res
 ```
 
-### Container With Most Water
+#### Container With Most Water
 
 **Problem:** you are given an integer array `heights` where `heights[i]` represents the height of the ith bar. You may choose any two bars to form a container. Return the maximum amount of water a container can store.
 
