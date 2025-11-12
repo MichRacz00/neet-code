@@ -1,6 +1,63 @@
 # NeetCode 150
 
-Simple overview of use/purpose.
+## Binary Search
+
+TODO: add visual example on how pointers move
+
+### Example Problems
+
+#### Binary Search
+
+**Problem:** you are given an array of distinct integers `nums`, sorted in ascending order, and an integer `target`. Implement a function to search for `target` within `nums`. If it exists, then return its index, otherwise, return `-1`.
+
+```python
+def search(self, nums: List[int], target: int) -> int:
+    nums.sort()
+    l, r = 0, len(nums) - 1
+
+    while l <= r:
+        m = (l + r) // 2
+
+        if target < nums[m]:
+            r = m - 1
+        elif target > nums[m]:
+            l = m + 1
+        else:
+            return m
+
+    return -1
+```
+
+#### Search a 2D Matrix
+
+**Problem:** you are given an `m x n` 2-D integer array `matrix` and an integer `target`. Each row in matrix is sorted in non-decreasing order. The first integer of every row is greater than the last integer of the previous row. Return `true` if target exists within matrix or `false` otherwise.
+
+```python
+def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
+    ROW, COL = len(matrix) - 1, len(matrix[0]) - 1
+
+    l, r = 0, ROW
+    while l <= r:
+        m = (l + r) // 2
+        if matrix[m][0] <= target <= matrix[m][COL]:
+            l, r = 0, COL
+            while l <= r:
+                k = (l + r) // 2
+
+                if matrix[m][k] == target:
+                    return True
+                elif matrix[m][k] > target:
+                    r = k - 1
+                elif matrix[m][k] < target:
+                    l = k + 1
+            return False
+
+        elif matrix[m][COL] < target:
+            l = m + 1
+        elif matrix[m][0] > target:
+            r = m - 1
+    return False
+```
 
 ## Two Pointers
 
