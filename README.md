@@ -59,6 +59,33 @@ def searchMatrix(self, matrix: List[List[int]], target: int) -> bool:
     return False
 ```
 
+#### Koko Eating Bananas
+
+**Problem:** You are given an integer array `piles` where `piles[i]` is the number of bananas in the `ith` pile. You are also given an integer `h`, which represents the number of hours you have to eat all the bananas. You may decide your bananas-per-hour eating rate of `k`. Each hour, you may choose a pile of bananas and eats `k` bananas from that pile. If the pile has less than `k` bananas, you may finish eating the pile but you can not eat from another pile in the same hour. Return the minimum integer `k` such that you can eat all the bananas within `h` hours.
+
+💡 **Insight:** binary search is not limited to searching for an index in a sorted array; it can also be used to find a minimum (or maximum) value that satisfies a certain **monotonic condition**.
+
+```python
+def minEatingSpeed(self, piles: List[int], h: int) -> int:
+    l, r = 1, max(piles)
+    res = r
+
+    while l <= r:
+        k = (l + r) // 2
+        total = 0
+
+        for p in piles:
+            total += math.ceil(p / k)
+
+        if total <= h:
+            r = k - 1
+            res = min(res, k)
+        else:
+            l = k + 1
+
+    return res
+```
+
 ## Two Pointers
 
 ### 🧭 Recognizing Two-Pointer Problems
