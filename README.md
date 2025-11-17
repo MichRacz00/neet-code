@@ -86,6 +86,32 @@ def minEatingSpeed(self, piles: List[int], h: int) -> int:
     return res
 ```
 
+#### Find Minimum in Rotated Sorted Array
+
+**Problem:** you are given an array of length `n` which was originally sorted in ascending order. It has now been rotated between `1` and `n` times. For example, the array `nums = [1,2,3,4,5,6]` might become:
+
+- `[3,4,5,6,1,2]` if it was rotated 4 times
+- `[1,2,3,4,5,6]` if it was rotated 6 times
+
+Assuming all elements in the rotated sorted array `nums` are unique, return the minimum element of this array.
+
+```python
+def findMin(self, nums: List[int]) -> int:
+    l, r = 0, len(nums) - 1
+
+    while l < r:
+        m = (l + r) // 2
+
+        if nums[m] < nums[r]:
+            r = m
+        else:
+            l = m + 1
+
+    return nums[m]
+```
+
+💡 **Insight:** we employ binary search with a modifed condition for the right pointer - `r` becomes `m` and not as usually `m - 1`, becaouse `m` can be the samllest element. When the pointer `r` is modified, we only narrow down the upper limit for the minimum value. On the other hand, if we modify `l` - in the case where value of `nums[m]` is larger than `nums[r]` - `m` is not the smallest element, becaouse element `r` is smaller.
+
 ## Two Pointers
 
 ### 🧭 Recognizing Two-Pointer Problems
