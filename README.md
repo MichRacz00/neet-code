@@ -112,6 +112,18 @@ def findMin(self, nums: List[int]) -> int:
 
 💡 **Insight:** we employ binary search with a modifed condition for the right pointer - `r` becomes `m` and not as usually `m - 1`, becaouse `m` can be the samllest element. When the pointer `r` is modified, we only narrow down the upper limit for the minimum value. On the other hand, if we modify `l` - in the case where value of `nums[m]` is larger than `nums[r]` - `m` is not the smallest element, becaouse element `r` is smaller.
 
+#### Search in Rotated Sorted Array
+
+**Problem:** you are given an array of length `n` which was originally sorted in ascending order. It has now been rotated between `1` and `n` times. For example, the array `nums = [1,2,3,4,5,6]` might become:
+
+- `[3,4,5,6,1,2]` if it was rotated `4` times.
+- `[1,2,3,4,5,6]` if it was rotated `6` times.
+
+Given the rotated sorted array `nums` and an integer `target`, return the index of `target` within `nums`, or `-1` if it is not present.
+
+![Visualize Left Half](./figures/bin-serch-vis-left.drawio.svg)
+![Visualize Right Half](./figures/bin-serch-vis-right.drawio.svg)
+
 ## Two Pointers
 
 ### 🧭 Recognizing Two-Pointer Problems
