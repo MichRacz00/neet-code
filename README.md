@@ -135,7 +135,7 @@ def search(self, nums: List[int], target: int) -> int:
             return m
 
         if nums[m] > nums[r]:
-            if target > nums[m] or target <= nums[r]:
+            if target > nums[m] or target < nums[l]:
                 l = m + 1
             else:
                 r = m - 1
