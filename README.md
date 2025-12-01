@@ -121,8 +121,11 @@ def findMin(self, nums: List[int]) -> int:
 
 Given the rotated sorted array `nums` and an integer `target`, return the index of `target` within `nums`, or `-1` if it is not present.
 
-![Visualize Left Half](./figures/bin-serch-vis-left.drawio.svg)
-![Visualize Right Half](./figures/bin-serch-vis-right.drawio.svg)
+<div style="text-align:center; margin: 0 auto;">
+  <img src="./figures/bin-serch-vis-left.drawio.svg" alt="Diagram 1" width="600">
+  <br><br>
+  <img src="./figures/bin-serch-vis-right.drawio.svg" alt="Diagram 2" width="600">
+</div>
 
 ## Two Pointers
 
